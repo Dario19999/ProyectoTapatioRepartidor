@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
   formLogin:FormGroup;
 
   @ViewChild('modalLogin',{ static: false }) modalLogin;
+  @ViewChild('modalError',{ static: false }) modalError;
+  @ViewChild('cerrarModalError',{ static: false }) cerrarModalError;
 
   constructor(private fb:FormBuilder,
               private repartidoresService:RepartidoresService,
@@ -50,13 +52,13 @@ export class LoginComponent implements OnInit {
       this.formLogin.addControl("tipo", this.fb.control(null));
       this.formLogin.get("tipo").setValue(111);
       this.repartidoresService.login(this.formLogin.value).subscribe( datos => {
-          if(datos['estado'] == 0 || -1){
+          if(datos['estado'] == 0 || datos['estado'] == -1){
             window.confirm(datos['mensaje']);
             return
           }
           else if(datos['estado'] == 1){
             if(datos['activo'] == 0){
-              window.confirm("Su cuenta ha sido desactivada.");
+              this.modalError.nativeElement.click();
               return
             }else{
               let id = datos['id_usuario'];

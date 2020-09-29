@@ -30,4 +30,33 @@ export class RepartidoresService {
     // return this.http.post(`https://proyectotapatio.com/PT-API-P/login.php`, CRED).pipe(retry(3))
     return this.http.post(`http://localhost:8080/PT-API/login/login.php`, CRED).pipe(retry(3))
   }
+
+  registrarVentaExterna( id_rep:number, venta:any){
+    const VENTA = serialize(venta);
+    return this.http.post(`${this.url}VentaExterna.php?id_usuario=${id_rep}`, VENTA).pipe(retry(3))
+  }
+
+  buscarEntrega( id_venta:number ){
+    return this.http.get(`${this.url}BuscarEntrega.php?id_venta=${id_venta}`).pipe(retry(3));
+  }
+
+  tomerEntrega( id_venta:number, id_repartidor:number ){
+    return this.http.get(`${this.url}TomarEntrega.php?id_venta=${id_venta}&id_repartidor=${id_repartidor}`).pipe(retry(3))
+  }
+
+  getEntregas( id_repartidor:number ){
+    return this.http.get(`${this.url}EntregasProceso.php?id_repartidor=${id_repartidor}`).pipe(retry(3))
+  }
+
+  getHistorialEntregas( id_repartidor:number ){
+    return this.http.get(`${this.url}EntregasTerminadas.php?id_repartidor=${id_repartidor}`).pipe(retry(3))
+  }
+
+  cancelarEntrega( id_venta:number, id_repartidor:number ){
+    return this.http.get(`${this.url}CancelarEntrega.php?id_venta=${id_venta}&id_repartidor=${id_repartidor}`).pipe(retry(3))
+  }
+
+  terminarEntrega( id_venta:number, id_repartidor:number ){
+    return this.http.get(`${this.url}TerminarEntrega.php?id_venta=${id_venta}&id_repartidor=${id_repartidor}`).pipe(retry(3))
+  }
 }
