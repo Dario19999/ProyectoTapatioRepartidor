@@ -1,10 +1,10 @@
 <div class="container-fluid animated fadeIn fast pt-2">
     <div class="row mb-4">
         <div class="d-block mx-auto">
-            <h5 class="text-danger" *ngIf="!terminadas"> No hay entregas terminadas. </h5>
+            <h5 class="text-danger" *ngIf="terminadas == false"> No hay entregas terminadas. </h5>
         </div>
-        <div class="col-md-12" *ngIf="terminadas">
-            <h4 class="text-center">Entregas en Proceso</h4>
+        <div class="col-md-12" *ngIf="terminadas == true">
+            <h4 class="text-center">Entregas Finalizadas</h4>
             <table class="table table-striped table-bordered table-hover">
                 <thead class="thead-dark text-center">
                     <tr>

@@ -22,13 +22,12 @@
         </div>
         <div class="col-md-12 text-center" *ngIf="encontrado == true">
             <h5>Resultados de Búsqueda:</h5>
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-bordered table-hover">
                 <thead class="thead-dark text-center">
                     <tr>
-                        <th scope="col" style="width: 10%;">ID</th>
+                        <th scope="col" style="width: 20%;">ID Boleto</th>
                         <th scope="col" style="width: 20%;">Nombre de Boleto</th>
                         <th scope="col" style="width: 20%;">Cantidad Solicitada</th>
-                        <th scope="col" style="width: 20%;">Acciones</th>
                     </tr>
                 </thead>
                 <tbody class="text-center">
@@ -36,13 +35,10 @@
                         <th scope="row" class="align-middle">{{ resultado.id_boleto }}</th>
                         <td class="align-middle text-middle">{{ resultado.nombre_boleto }}</td>
                         <td class="align-middle">{{ resultado.cantidad }}</td>
-                        <td class="align-middle" *ngIf="!tomado">
-                            <button class="btn btn-primary" type="button" (click)="tomarEntrega( id_entrega )">Tomar</button>
-                        </td>
-                        <td class="align-middle text-center text-success" *ngIf="tomado"> Tomado </td>
                     </tr>
                 </tbody>
             </table>
+            <button class="btn btn-primary mx-auto d-block" type="button" (click)="tomarEntrega( id_entrega )">Tomar</button>
         </div>
     </div>
     <div class="row mb-4">
