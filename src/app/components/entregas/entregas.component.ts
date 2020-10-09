@@ -72,7 +72,6 @@ export class EntregasComponent implements OnInit {
   getEventos(){
     this.eventosService.getEventos(2).subscribe( resultado => {
       this.eventos = resultado
-      console.log(this.eventos );
     });
   }
 
