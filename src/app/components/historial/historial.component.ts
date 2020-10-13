@@ -9,6 +9,8 @@ export class HistorialComponent implements OnInit {
 
   historial:any = null;
   terminadas:boolean = false;
+  errorElementos:boolean = false;
+  elementosEntrega:any = null;;
 
   constructor(private repartidoresService:RepartidoresService) { }
 
@@ -31,4 +33,17 @@ export class HistorialComponent implements OnInit {
     });
   }
 
+  verMas( id_venta:number ) {
+    this.elementosEntrega = null;
+    this.repartidoresService.verElementosEntrega(id_venta).subscribe(resultado => {
+      if(resultado == null){
+        this.errorElementos = true;
+        return
+      }
+      else{
+        this.elementosEntrega = resultado;
+        console.log(this.elementosEntrega);
+      }
+    })
+  }
 }

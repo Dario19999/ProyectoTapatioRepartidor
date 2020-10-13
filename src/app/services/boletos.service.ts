@@ -7,8 +7,8 @@ import { retry } from 'rxjs/operators';
 })
 export class BoletosService {
 
-  // url = "https://proyectotapatio.com/PT-API-P/boletos/";
-  url = "http://localhost:8080/PT-API/boletos/";
+  url = "https://proyectotapatio.com/PT-API-P/boletos/";
+  // url = "http://localhost:8080/PT-API/boletos/";
 
   constructor(private http:HttpClient) { }
 

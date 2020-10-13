@@ -28,6 +28,9 @@ export class EntregasComponent implements OnInit {
 
   formVentaExt:FormGroup;
 
+  errorElementos:boolean = false;
+  elementosEntrega:any = null;;
+
   constructor(private boletosService:BoletosService,
               private eventosService:EventosService,
               private repartidoresService:RepartidoresService,
@@ -163,10 +166,9 @@ export class EntregasComponent implements OnInit {
     })
   }
 
-  tomarEntrega( id_entrega:number ){
-
+  tomarEntrega(){
     let id_usuario = Number(JSON.parse(localStorage.getItem("id_usuario")));
-    this.repartidoresService.tomerEntrega( id_entrega, id_usuario ).subscribe( datos => {
+    this.repartidoresService.tomerEntrega( this.id_entrega, id_usuario ).subscribe( datos => {
 
       if(datos['estado'] == 0){
         this.tomado = false;
@@ -179,7 +181,20 @@ export class EntregasComponent implements OnInit {
         this.tomado = true;
         this.getEntregas();
       }
+    })
+  }
 
+  verMas( id_venta:number ) {
+    this.elementosEntrega = null;
+    this.repartidoresService.verElementosEntrega(id_venta).subscribe(resultado => {
+      if(resultado == null){
+        this.errorElementos = true;
+        return
+      }
+      else{
+        this.elementosEntrega = resultado;
+        console.log(this.elementosEntrega);
+      }
     })
   }
 
