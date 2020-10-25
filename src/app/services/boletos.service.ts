@@ -7,12 +7,16 @@ import { retry } from 'rxjs/operators';
 })
 export class BoletosService {
 
-  url = "https://proyectotapatio.com/PT-API-P/boletos/";
-  // url = "http://localhost:8080/PT-API/boletos/";
+  // url = "https://proyectotapatio.com/PT-API-P/boletos/";
+  url = "http://localhost:8080/PT-API/boletos/";
 
   constructor(private http:HttpClient) { }
 
   getBoletos( id_evento:number ){
     return this.http.get(`${this.url}getBoletos.php?id_evento=${id_evento}`).pipe(retry(3))
+  }
+
+  getBoleto( id_boleto:number ){
+    return this.http.get(`${this.url}getBoleto.php?id_boleto=${id_boleto}`).pipe(retry(3))
   }
 }

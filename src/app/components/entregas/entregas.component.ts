@@ -16,6 +16,8 @@ export class EntregasComponent implements OnInit {
 
   id_entrega:number = null;
   id_evento:number = null;
+  id_boleto:number = null;
+  precio:number = null;
 
   mensaje:string = null;
 
@@ -69,6 +71,15 @@ export class EntregasComponent implements OnInit {
     }
     else{
       return
+    }
+  }
+
+  getBoleto( event:any ){
+    this.id_boleto = event.target.value;
+    if(this.id_boleto != null){
+      this.boletosService.getBoleto(this.id_boleto).subscribe( resultado => {
+        this.precio = resultado[0]['precio_actual_boleto'];
+      })
     }
   }
 

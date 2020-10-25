@@ -116,16 +116,21 @@
                                     <div class="col-md-12">
                                         <label for="evento">Evento:</label>
                                         <select (change)="getBoletos($event)" id="evento" class="form-control">
-                                      <option *ngFor="let evento of eventos" [value]="evento.id_evento"> {{evento.nombre_evento}} </option>
-                                    </select>
+                                          <option *ngFor="let evento of eventos" [value]="evento.id_evento"> {{evento.nombre_evento}} </option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="input-group form-row mb-3" *ngIf="id_evento != null">
-                                    <div class="col-md-12">
+                                    <div class="col-md-10">
                                         <label for="boletoReferencia">Boleto de Referencia:</label>
-                                        <select id="boletoReferencia" class="form-control" formControlName="boleto">
+                                        <select id="boletoReferencia" class="form-control" formControlName="boleto" (change)="getBoleto($event)">
                                         <option *ngFor="let boleto of boletos" [value]="boleto.id_boleto"> {{boleto.nom_bol}}  </option>
                                     </select>
+                                    </div>
+                                </div>
+                                <div class="row" *ngIf="precio != null">
+                                    <div class="col-md-4">
+                                        <h5> Precio actual del boleto: {{precio | currency:'MXN':'symbol'}} </h5>
                                     </div>
                                 </div>
                                 <div class="input-group form-row mb-3">

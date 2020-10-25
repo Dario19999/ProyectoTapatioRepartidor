@@ -8,8 +8,8 @@ import { serialize } from 'object-to-formdata';
 })
 export class RepartidoresService {
 
-  url = "https://proyectotapatio.com/PT-API-P/repartidores/";
-  // url = "http://localhost:8080/PT-API/repartidores/";
+  // url = "https://proyectotapatio.com/PT-API-P/repartidores/";
+  url = "http://localhost:8080/PT-API/repartidores/";
 
   constructor(private http:HttpClient) { }
 
@@ -27,8 +27,8 @@ export class RepartidoresService {
 
   login( credenciales:any ){
     const CRED = serialize(credenciales);
-    return this.http.post(`https://proyectotapatio.com/PT-API-P/login/login.php`, CRED).pipe(retry(3))
-    // return this.http.post(`http://localhost:8080/PT-API/login/login.php`, CRED).pipe(retry(3))
+    // return this.http.post(`https://proyectotapatio.com/PT-API-P/login/login.php`, CRED).pipe(retry(3))
+    return this.http.post(`http://localhost:8080/PT-API/login/login.php`, CRED).pipe(retry(3))
   }
 
   registrarVentaExterna( id_rep:number, venta:any){
